@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main{
+            width: 1200px;
+            height: 600px; 
+        }
+
+    </style>
+    <script src="./echarts.min.js"></script>
+</head>
+<div id="main"></div>
+<body>
+   <script>
+var myChart = echarts.init(document.getElementById("main"));
+
+
+option = {
+    title: {
+        text: '销量',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        // orient: 'vertical',
+        // top: 'middle',
+        bottom: 10,
+        left: 'center',
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+    },
+    series: [
+        {
+            type: 'pie',
+            radius: '65%',
+            center: ['50%', '50%'],
+            selectedMode: 'single',
+            data: [
+                {
+                    value: 15,
+                    name: '衬衫',
+                    label: {
+                        formatter: [
+                            '{title|{b}}{abg|}',
+                            '{hr|}',
+                            '  {value|15}'
+                        ].join('\n'),
+                        backgroundColor: '#eee',
+                        borderColor: '#777',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        rich: {
+                            title: {
+                                color: '#eee',
+                                align: 'center'
+                            },
+                            abg: {
+                                backgroundColor: '#333',
+                                width: '100%',
+                                align: 'right',
+                                height: 25,
+                                borderRadius: [4, 4, 0, 0]
+                            },
+                            hr: {
+                                borderColor: '#777',
+                                width: '100%',
+                                borderWidth: 0.5,
+                                height: 0
+                            },
+                            value: {
+                                width: 20,
+                                padding: 10,
+                                align: 'center'
+                            },
+                            
+                        }
+                    }
+                },
+                {value: 20, name: "羊毛衫"},
+                {value: 36, name: "雪纺衫"},
+                {value: 10, name: "裤子"},
+                {value: 10, name: "高跟鞋"},
+                {value: 20, name: "袜子" }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+
+myChart.setOption(option);
+
+   </script> 
+</body>
+</html>
