@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button :disabled="index">{{nums}}</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                nums:10,
+                index:true
+            },
+            mounted:function(){
+                var _this=this;
+                var time= setInterval(function(){
+                    if(!_this.nums){
+                        _this.index=false
+                        _this.nums="提交"
+                        clearInterval(time)
+                    }else{_this.nums--}
+                   
+                },1000)
+            }
+        })
+    </script>
+</body>
+</html>
