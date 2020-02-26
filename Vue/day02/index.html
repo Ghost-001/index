@@ -29,7 +29,7 @@
                  <td>{{nums.gender}}</td>
                  <td>{{nums.hj}}</td>
                  <td>{{nums.phone}}</td>
-                 <td>{{nums.age}} <span></span></td>
+                 <td @click="ageSort">{{nums.age}} </td>
                 </tr>
                </table>
     </div>
@@ -43,8 +43,13 @@ var bm= new Vue({
         {id:2,nm:"小明",gender:"男",hj:"广东",phone:"15912345678",age:"20"},
         {id:3,nm:"小艾",gender:"女",hj:"东北",phone:"18112345678",age:"25"},
         {id:4,nm:"小雨",gender:"男",hj:"北京",phone:"13612345678",age:"38"}]
+    },
+    methods:{
+        ageSort:function(){
+            
+        }
     }
-})
+}),
 
     </script>
 </body>
