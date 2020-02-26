@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        table{
+            border: 1px solid pink;
+        }
+        th,td{
+            border: 1px solid pink;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name="" id="" v-model="selected">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>户籍</th>
+                <th>手机</th>
+            </tr>
+            <tr v-for="(list ,index) in arr" v-bind:value="list">
+                <td>{{list.id}}</td>
+                <td>{{list.nm}}</td>
+                <td>{{list.age}}</td>
+                <td>{{list.census}}</td>
+                <td>{{list.phone}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var vm =new Vue({
+            el:"#app",
+            data:{
+                arr:[{id:0,nm:"小米",age:18,census:"湖南",phone:"17312345678",pinyin:"xiaomi"},
+                {id:1,nm:"小欣",age:18,census:"湖南",phone:"17312345678",pinyin:"xiaoxin"},
+                {id:2,nm:"小琳",age:18,census:"湖南",phone:"17312345678",pinyin:"xiaolin"},
+                {id:3,nm:"小灵",age:18,census:"湖南",phone:"17312345678",pinyin:"xiaoling"}],
+                selected:""
+            }
+        })
+    </script>
+</body>
+</html>

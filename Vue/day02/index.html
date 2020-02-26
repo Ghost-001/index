@@ -13,7 +13,6 @@
 </head>
 <body>
     <div id="app">
-      
             <table>
                 <tr>
                  <th>学号</th>
@@ -21,15 +20,15 @@
                  <th>性别</th>
                  <th>籍贯</th>
                  <th>联系电话</th>
-                 <th>年龄</th>     
+                 <th @click="ageSort">年龄</th>     
                 </tr>
-                <tr v-for="nums in itme">
+                <tr v-for="(nums,index) in itme" :key="nums.id">
                  <td>{{nums.id}}</td>
                  <td>{{nums.nm}}</td>
                  <td>{{nums.gender}}</td>
                  <td>{{nums.hj}}</td>
                  <td>{{nums.phone}}</td>
-                 <td @click="ageSort">{{nums.age}} </td>
+                 <td >{{nums.age}} </td>
                 </tr>
                </table>
     </div>
@@ -39,17 +38,20 @@ var bm= new Vue({
     el:"#app",
     data:{
         itme:[
-        {id:1,nm:"小米",gender:"女",hj:"湖南",phone:"17312345678",age:"18"},
-        {id:2,nm:"小明",gender:"男",hj:"广东",phone:"15912345678",age:"20"},
-        {id:3,nm:"小艾",gender:"女",hj:"东北",phone:"18112345678",age:"25"},
-        {id:4,nm:"小雨",gender:"男",hj:"北京",phone:"13612345678",age:"38"}]
+        {id:1,nm:"小米",gender:"女",hj:"湖南",phone:"17312345678",age:18},
+        {id:2,nm:"小明",gender:"男",hj:"广东",phone:"15912345678",age:25},
+        {id:3,nm:"小艾",gender:"女",hj:"东北",phone:"18112345678",age:20},
+        {id:4,nm:"小雨",gender:"男",hj:"北京",phone:"13612345678",age:38},
+        {id:5,nm:"小欣",gender:"女",hj:"北京",phone:"13612345678",age:23}]
     },
     methods:{
         ageSort:function(){
-            
+            this.itme.sort((a,b)=>{
+                return a.age-b.age
+            })
         }
     }
-}),
+})
 
     </script>
 </body>
