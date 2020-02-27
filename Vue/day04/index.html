@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>电话本</title>
+		<meta name="viewport" content="width=device-width" />
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{padding:0;margin:0;}
+			.header1{width: 100%; height: 50px; border-bottom: 1px solid #eee;
+			text-align: center; line-height: 50px; background: pink;}
+			.footer1{width: 100%; height: 50px; border-bottom: 1px solid #eee;
+			text-align: center; line-height: 50px; background: pink;}
+			.content1 ul li{display: flex; flex-direction: row; flex-wrap: nowrap;
+			height:100px; background: lightgoldenrodyellow; margin-bottom: 10px;
+			line-height: 100px;
+			}
+			.content1 ul li span:nth-of-type(1){width: 10%;}
+			.content1 ul li span:nth-of-type(2){width: 30%;}
+			.content1 ul li span:nth-of-type(3){width: 40%;}
+			.content1 ul li span:nth-of-type(4){width: 20%;}
+			.content1 ul li span img{ width: 30px; height: 30px; margin-top:33px; }
+		</style>
+	</head>
+	<body>
+        <div id="app">
+            <header1></header1>
+            <content1 :phone="phoneList"></content1>
+            <footer1></footer1>
+        </div>
+        <script>
+            var header1={
+                template:`<h2 class="header1">我的电话簿</h2>`}
+            var content1={
+                props:['phone'],
+               template:`<div class="content1">
+					<ul>
+						<li v-for="(item,index) in phone">
+						<span>{{item.id}}</span> 
+						<span>{{item.name}}</span>
+						<span>{{item.phone}}</span>
+						</li>
+					</ul>
+				</div>`
+            }
+            var footer1={
+                template:`<div class="footer1">版权：© 归web21班所有</div>`
+            }
+            new Vue({
+                el:"#app",
+                data:{
+                    phoneList:[
+						{"id":1,"name":"古力娜扎","phone":"13412340987"},
+						{"id":2,"name":"彭于晏","phone":"13512340987"},
+						{"id":3,"name":"迪丽热巴","phone":"13612341234"},
+						{"id":4,"name":"韩红","phone":"13312340987"},
+						{"id":5,"name":"梁朝伟","phone":"15812340987"},
+					]
+                },
+                components:{
+                    header1,
+                    content1,
+                    footer1
+                }
+            })
+
+        </script>
+	</body>
+</html>
