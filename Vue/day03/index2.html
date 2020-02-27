@@ -105,19 +105,28 @@
                 },
                 //添加购物车
                 add:function(nums){
-                    // for(var i=0;this.arr2.length+1;i++){
-                    // console.log(this.arr2)
-
-                    //     if(this.arr2[i].id==nums.id){
-                    //         console.log(nums.id)
-                    //     }else{
-                    //     // var list=this.clone(nums)
-                    //     // this.arr2.push(list)
-                    //     }
-                        
-                    // }
                     var list=this.clone(nums)
-                        this.arr2.push(list)
+                    var hasOne = false;
+						if(this.arr2.length){
+							console.log(87);
+							for(var i = 0;i<this.arr2.length;i++){
+								if(list.name != this.arr2[i].name){
+									hasOne = false;
+								}else{
+									hasOne = true;
+									this.arr2[i].num += list.num;
+									break;
+								}
+							}
+							if(!hasOne){
+								console.log(90);
+								this.arr2.push(list);
+							}
+						}else{
+							console.log("购物车为空");
+							this.arr2.push(list);
+						}
+                   
                
                 },
                 //移除购物车
