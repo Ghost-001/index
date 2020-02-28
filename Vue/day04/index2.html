@@ -18,20 +18,25 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;}
+            .box{
+                overflow: scroll;
+            }
     </style>
 </head>
 <body>
     <div id="app">
-       <mainland :list="guochanList"></mainland>
-       <Variety :list="zongyiList"></Variety>
-       <occident :list="yingmeiList"></occident>
+       <mainland :list="guochanList " title="近期值得看的国产剧"></mainland>
+       <mainland :list="zongyiList " title="近期值得看的综艺节目"></mainland>
+       <mainland :list="yingmeiList" title="近期值得看的英美剧"></mainland>
+      
     </div>
     <script type="text/javascript">
         var mainland={
-            props:["list"],
+            props:["list","title"],
             template:`
-            <div><h2>近期值得看的国产剧</h2>
             <div>
+            <h2>{{title}}</h2>
+            <div  class="box">
                 <ul class="list">
                     <li v-for="item in list">
                         <div>
@@ -41,57 +46,27 @@
                         
                     </li>
                 </ul>
-            </div></div>`
-        }
-        var Variety ={
-            props:["list"],
-            template:`
-            <div><h2>近期值得看的综艺节目</h2>
-            <div>
-                <ul class="list">
-                    <li v-for="item in list">
-                        <div>
-                            <img :src="item.cover.url" title="item.title"/>
-                        </div>
-                        <p> {{item.title}}</p>
-                        
-                    </li>
-                </ul>
-            </div></div>`
-        }
-        var occident={
-            props:["list"],
-            template:`
-            <div><h2>近期值得看的英美剧</h2>
-            <div>
-                <ul class="list">
-                    <li v-for="item in list">
-                        <div>
-                            <img :src="item.cover.url" title="item.title"/>
-                        </div>
-                        <p> {{item.title}}</p>
-                        
-                    </li>
-                </ul>
-            </div></div>`
+            </div>
+            </div>`
         }
         var vm = new Vue({
             el:"#app",
             data:{
                 guochanList:[],
                 zongyiList:[],
-                yingmeiList:[]
+                yingmeiList:[],
+                title:''
             },
             mounted:function(){
                 axios.get('../json/guoc.json').then((data)=>{//成功获取数据的回调函数
-                    console.log(data.data.subject_collection_items);
+                    console.log(data);
                     this.guochanList = data.data.subject_collection_items;
                 })
                 .catch((error)=>{//失败的回调函数
                 	console.log(error);
                 })
                 axios.get('../json/zongy.json').then((data)=>{//成功获取数据的回调函数
-                    console.log(data.data.subject_collection_items);
+                    console.log(data.data.subject_collection.name);
                     this.zongyiList = data.data.subject_collection_items;
                 })
                 .catch((error)=>{//失败的回调函数
@@ -106,7 +81,7 @@
                 })
             },
             components:{
-                mainland,Variety,occident
+                mainland
             }
         })
     </script>
